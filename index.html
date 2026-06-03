@@ -105,15 +105,37 @@
     }
 
     .logo-subtitle {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .sub-line {
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 400;
-      font-size: clamp(12px, 1.6vw, 16px);
+      font-weight: 600;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: var(--off-white);
-      line-height: 1.6;
+      line-height: 1.2;
     }
-    .logo-subtitle strong { color: var(--red); font-weight: 600; }
+
+    .sub-top {
+      font-size: clamp(11px, 1.4vw, 15px);
+      color: var(--white);
+      font-weight: 400;
+    }
+
+    .sub-mid {
+      font-size: clamp(13px, 1.8vw, 19px);
+      color: var(--red);
+      font-weight: 700;
+      letter-spacing: 4px;
+    }
+
+    .sub-bot {
+      font-size: clamp(11px, 1.4vw, 15px);
+      color: var(--white);
+      font-weight: 400;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -459,8 +481,9 @@
       <div class="logo-wordmark">UK<span>U</span>TA</div>
       <div class="logo-divider"></div>
       <div class="logo-subtitle">
-        UK Universities<br/>
-        <strong>Türkiye</strong> Association
+        <span class="sub-line sub-top">UK UNIVERSITIES</span>
+        <span class="sub-line sub-mid">TÜRKİYE</span>
+        <span class="sub-line sub-bot">ASSOCIATION</span>
       </div>
     </header>
 

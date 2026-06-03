@@ -209,7 +209,7 @@
     /* ── VALUE PILLARS ── */
     .pillars {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 1px;
       background: rgba(255,255,255,0.08);
       border: 1px solid rgba(255,255,255,0.08);
@@ -430,6 +430,10 @@
     }
 
     /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      .pillars { grid-template-columns: repeat(2, 1fr); }
+    }
+
     @media (max-width: 640px) {
       .page { padding: 0 6vw; }
       header { padding: 44px 0 36px; gap: 14px; }
@@ -441,7 +445,7 @@
       .arc { width: 300px; height: 300px; border-width: 70px; bottom: -130px; right: -130px; }
       .footer-coming { display: none; }
       .audience-toggle { flex-direction: column; }
-      .aud-btn:first-child { border-right: 1px solid rgba(255,255,255,0.12); border-bottom: none; }
+      .aud-btn { border-right: 1px solid rgba(255,255,255,0.12) !important; border-bottom: none; }
     }
   </style>
 </head>
@@ -472,7 +476,7 @@
         <span class="merhaba-sub">İngiltere'nin en iyi üniversiteleri sizinle buluşuyor — Welcome, Türkiye. The UK's finest universities are coming to meet you.</span>
       </div>
 
-      <h1>Connecting Türkiye's<br/>brightest minds with<br/><em>the UK's best universities.</em></h1>
+      <h1>Connecting Türkiye's<br/>brightest minds with<br/><em>UK universities.</em></h1>
 
       <p class="intro">
         UKUTA is the collective voice of UK universities engaged with Türkiye — committed to building high-level, strategic connections between UK higher education and Türkiye's dynamic education landscape. We bring together universities, education professionals, schools, and student advisors to create meaningful, lasting pathways between two countries with a shared ambition for academic excellence.
@@ -486,14 +490,19 @@
           <p class="pillar-text">Shape your Türkiye recruitment strategy alongside peers. Access shared market intelligence, in-country events, and a coordinated UK presence.</p>
         </div>
         <div class="pillar">
+          <span class="pillar-icon">🎓</span>
+          <div class="pillar-title">For Turkish Universities</div>
+          <p class="pillar-text">Engage with UK higher education institutions to explore collaborative opportunities and support your students' aspirations to study in the UK.</p>
+        </div>
+        <div class="pillar">
+          <span class="pillar-icon">🏫</span>
+          <div class="pillar-title">For Schools</div>
+          <p class="pillar-text">Connect your students with the full range of UK university options through a trusted, dedicated association with a presence in Türkiye.</p>
+        </div>
+        <div class="pillar">
           <span class="pillar-icon">🤝</span>
           <div class="pillar-title">For Counsellors & Agents</div>
           <p class="pillar-text">Connect directly with UK universities through a single trusted association. Stay informed on entry requirements, events, and opportunities.</p>
-        </div>
-        <div class="pillar">
-          <span class="pillar-icon">🎓</span>
-          <div class="pillar-title">For Students & Schools</div>
-          <p class="pillar-text">Discover the full range of UK higher education opportunities through a network built specifically for Türkiye.</p>
         </div>
       </div>
 
@@ -524,7 +533,9 @@
 
         <div class="audience-toggle">
           <button class="aud-btn active" id="btn-uni" onclick="setAudience('uni')">UK University</button>
-          <button class="aud-btn" id="btn-other" onclick="setAudience('other')">Counsellor / School / Student</button>
+          <button class="aud-btn" id="btn-turkish" onclick="setAudience('turkish')">Turkish University</button>
+          <button class="aud-btn" id="btn-school" onclick="setAudience('school')">School</button>
+          <button class="aud-btn" id="btn-other" onclick="setAudience('other')">Counsellor / Agent</button>
         </div>
 
         <div class="email-row" id="emailRow">
@@ -554,10 +565,16 @@
 
     function setAudience(type) {
       audience = type;
-      document.getElementById('btn-uni').classList.toggle('active', type === 'uni');
-      document.getElementById('btn-other').classList.toggle('active', type === 'other');
-      const input = document.getElementById('emailInput');
-      input.placeholder = type === 'uni' ? 'your@university.ac.uk' : 'your@email.com';
+      ['uni','turkish','school','other'].forEach(t => {
+        document.getElementById('btn-' + t).classList.toggle('active', t === type);
+      });
+      const placeholders = {
+        uni: 'your@university.ac.uk',
+        turkish: 'your@university.edu.tr',
+        school: 'your@school.edu.tr',
+        other: 'your@organisation.com'
+      };
+      document.getElementById('emailInput').placeholder = placeholders[type];
     }
 
     function handleSubmit() {
